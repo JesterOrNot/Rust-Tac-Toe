@@ -1,6 +1,13 @@
 use colored::*;
 use std::io::Write;
 
+fn main() {
+    loop {
+        print_board(new_board());
+        get_moves();
+    }
+}
+
 fn print_board(board: Vec<Vec<String>>) {
     println!("---------");
     let mut m = 0;
@@ -40,6 +47,7 @@ fn integer_input(prompt: &str) -> i32 {
     std::io::stdin().read_line(&mut line).unwrap();
     return line.trim().parse().unwrap();
 }
+
 fn new_board() -> Vec<Vec<String>> {
     return vec![
         vec![
@@ -59,9 +67,28 @@ fn new_board() -> Vec<Vec<String>> {
         ],
     ];
 }
-fn main() {
-    loop {
-        print_board(new_board());
-        get_moves();
-    }
+#[allow(dead_code)]
+fn main_menu() -> Vec<String> {
+    return vec![];
+}
+#[allow(dead_code)]
+fn get_player_types() -> Vec<String> {
+    return vec![];
+}
+#[allow(dead_code)]
+fn lazy_cpu(board: Vec<Vec<String>>) -> Vec<Vec<String>> {
+    return vec![];
+}
+#[allow(dead_code)]
+fn random_cpu(board: Vec<Vec<String>>) -> Vec<Vec<String>> {
+    return vec![];
+}
+#[allow(dead_code)]
+fn is_draw(board: Vec<Vec<String>>) -> bool {
+    // WIP
+    return false;
+}
+#[allow(dead_code)]
+fn make_move(board: Vec<Vec<String>>, player_icon: &str) -> Vec<Vec<String>> {
+    return vec![];
 }
