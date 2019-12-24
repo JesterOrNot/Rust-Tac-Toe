@@ -85,7 +85,19 @@ fn random_cpu(board: Vec<Vec<String>>) -> Vec<Vec<String>> {
 }
 #[allow(dead_code)]
 fn is_draw(board: Vec<Vec<String>>) -> bool {
-    // WIP
+    let mut count = 0;
+    for array in board {
+        for item in array {
+            if item == "X" || item == "O" {
+                count+=1;
+            } else {
+                continue;
+            }
+        }
+    }
+    if count == 9 {
+        return true;
+    }
     return false;
 }
 #[allow(dead_code)]
