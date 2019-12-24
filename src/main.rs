@@ -4,6 +4,8 @@ use std::io::Write;
 
 fn main() {
     let mut board = new_board();
+    let term = console::Term::stdout();
+    term.hide_cursor().unwrap();
     let data = main_menu();
     let mut player_one_turn = true;
     print_board(board.clone());
@@ -46,18 +48,20 @@ fn main() {
             break;
         }
     }
-    again_or_no();
+    again_or_no(term);
 }
-fn again_or_no() {
+fn again_or_no(terminal: console::Term) {
     let mut dial = dialoguer::Select::new();
     dial.with_prompt("Do you want to play again?");
     dial.items(&["Yes".green(), "No".red()]);
     let result = dial.interact().unwrap();
     if result == 0 {
         main();
+        terminal.show_cursor().unwrap();
         return;
     }
     println!("Ok, bye!");
+    terminal.show_cursor().unwrap();
 }
 fn print_board(board: Vec<Vec<String>>) {
     println!("   1  2  3");
