@@ -4,6 +4,7 @@ use std::io::Write;
 
 fn main() {
     let mut board = new_board();
+    main_menu();
     loop {
         print_board(board.clone());
         board = make_move(board.clone(), String::from("X"));
@@ -46,7 +47,7 @@ fn prompt_input(msg: &str) -> String {
     std::io::stdout().flush().unwrap();
     let mut line = String::new();
     std::io::stdin().read_line(&mut line).unwrap();
-    return line;
+    return String::from(line.trim().trim());
 }
 fn integer_input(prompt: &str) -> i32 {
     print!("{}", prompt);
@@ -77,17 +78,32 @@ fn new_board() -> Vec<Vec<String>> {
 }
 #[allow(dead_code)]
 fn main_menu() -> Vec<String> {
-    return vec![];
+    let player_types = get_player_types();
+    let mut levels = player_types.clone();
+    levels.push("null".to_string());
+    levels.push("null".to_string());
+    if player_types[0] == "cpu" {
+        let level1 = prompt_input("What level is the player1 cpu(0/1)?: ");
+        levels[2] = String::from(level1);
+    }
+    if player_types[1] == "cpu" {
+        let level2 = prompt_input("What level is the player2 cpu(0/1)?: ");
+        levels[3] = String::from(level2);
+    }
+    return levels.clone();
 }
 fn get_player_types() -> Vec<String> {
     println!("Welcome to Tic-Tac-Toe!");
     let choice1 = prompt_input("Is player one a cpu or a normal player(cpu/play)?: ");
     let choice2 = prompt_input("Is player two a cpu or a normal player(cpu/play)?: ");
+    println!("{}{}", choice1, choice2);
     if (choice1 == "play" || choice1 == "cpu") && (choice2 == "play" || choice2 == "cpu") {
         let output = vec![choice1, choice2];
         return output;
+    } else {
+        println!("Ivalid");
+        return get_player_types();
     }
-    return get_player_types();
 }
 fn is_game_over(board: Vec<Vec<String>>) -> i32 {
     return 2;
