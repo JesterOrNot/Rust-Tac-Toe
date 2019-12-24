@@ -41,7 +41,13 @@ fn get_moves() -> (i32, i32) {
     let item2: i32 = integer_input("What is the second item?: ");
     return (item1, item2);
 }
-
+fn prompt_input(msg: &str) -> String {
+    print!("{}", msg);
+    std::io::stdout().flush().unwrap();
+    let mut line = String::new();
+    std::io::stdin().read_line(&mut line).unwrap();
+    return line;
+}
 fn integer_input(prompt: &str) -> i32 {
     print!("{}", prompt);
     std::io::stdout().flush().unwrap();
@@ -73,9 +79,18 @@ fn new_board() -> Vec<Vec<String>> {
 fn main_menu() -> Vec<String> {
     return vec![];
 }
-#[allow(dead_code)]
 fn get_player_types() -> Vec<String> {
-    return vec![];
+    println!("Welcome to Tic-Tac-Toe!");
+    let choice1 = prompt_input("Is player one a cpu or a normal player(cpu/play)?: ");
+    let choice2 = prompt_input("Is player two a cpu or a normal player(cpu/play)?: ");
+    if (choice1 == "play" || choice1 == "cpu") && (choice2 == "play" || choice2 == "cpu") {
+        let output = vec![choice1, choice2];
+        return output;
+    }
+    return get_player_types();
+}
+fn is_game_over(board: Vec<Vec<String>>) -> i32 {
+    return 2;
 }
 fn random_cpu(board: Vec<Vec<String>>, player_icon: String) -> Vec<Vec<String>> {
     let mut counter3 = 0;
