@@ -2,6 +2,7 @@ use colored::*;
 
 fn printBoard(board: Vec<Vec<String>>) {
     println!("---------");
+    let mut m = 0;
     for array in board {
         for item in array {
             print!("|");
@@ -14,8 +15,15 @@ fn printBoard(board: Vec<Vec<String>>) {
                     print!("{}", "O".red())
                 }
             }
+            print!("|");
+            if m == 2 {
+                println!("");
+                m = -1
+            }
+            m += 1;
         }
     }
+    println!("---------");
 }
 fn newBoard() -> Vec<Vec<String>> {
     return vec![
