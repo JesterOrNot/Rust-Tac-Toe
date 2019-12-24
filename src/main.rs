@@ -142,7 +142,6 @@ fn is_draw(board: Vec<Vec<String>>) -> bool {
     }
     return false;
 }
-#[allow(dead_code)]
 fn make_move(mut board: Vec<Vec<String>>, player_icon: String) -> Vec<Vec<String>> {
     let moves = get_moves();
     let x = moves.0;
