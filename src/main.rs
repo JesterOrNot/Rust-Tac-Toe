@@ -83,13 +83,12 @@ fn lazy_cpu(board: Vec<Vec<String>>) -> Vec<Vec<String>> {
 fn random_cpu(board: Vec<Vec<String>>) -> Vec<Vec<String>> {
     return vec![];
 }
-#[allow(dead_code)]
 fn is_draw(board: Vec<Vec<String>>) -> bool {
     let mut count = 0;
     for array in board {
         for item in array {
             if item == "X" || item == "O" {
-                count+=1;
+                count += 1;
             } else {
                 continue;
             }
