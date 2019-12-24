@@ -68,7 +68,7 @@ fn print_board(board: Vec<Vec<String>>) {
         for item in array {
             if m == 0 {
                 print!("{} ", count);
-                count+=1;
+                count += 1;
             }
             print!("|");
             if item == "null" {
@@ -82,7 +82,7 @@ fn print_board(board: Vec<Vec<String>>) {
             }
             print!("|");
             if m == 2 {
-                println!(" {}", count-1);
+                println!(" {}", count - 1);
                 m = -1
             }
             m += 1;
@@ -131,8 +131,8 @@ fn main_menu() -> Vec<String> {
     levels.push("null".to_string());
     if player_types[0] == "cpu" {
         let mut dial = dialoguer::Select::new();
-        dial.with_prompt("What level is the player1 cpu(0/1)?");
-        dial.items(&["0".cyan(), "1".cyan()]);
+        dial.with_prompt("What level is the player1?");
+        dial.items(&["0: Lazy CPU".cyan(), "1: Random CPU".cyan()]);
         let level1 = if dial.interact().unwrap() == 0 {
             String::from("0")
         } else {
@@ -142,8 +142,8 @@ fn main_menu() -> Vec<String> {
     }
     if player_types[1] == "cpu" {
         let mut dial = dialoguer::Select::new();
-        dial.with_prompt("What level is the player2 cpu(0/1)?");
-        dial.items(&["0".cyan(), "1".cyan()]);
+        dial.with_prompt("What level is the player2?");
+        dial.items(&["0: Lazy CPU".cyan(), "1: Random CPU".cyan()]);
         let level2 = if dial.interact().unwrap() == 0 {
             String::from("0")
         } else {
