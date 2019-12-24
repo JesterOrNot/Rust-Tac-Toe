@@ -75,9 +75,22 @@ fn main_menu() -> Vec<String> {
 fn get_player_types() -> Vec<String> {
     return vec![];
 }
-#[allow(dead_code)]
-fn lazy_cpu(board: Vec<Vec<String>>) -> Vec<Vec<String>> {
-    return vec![];
+fn lazy_cpu(board: Vec<Vec<String>>, player_icon: String) -> Vec<Vec<String>> {
+    let mut counter1 = 0;
+    let mut counter2 = 0;
+    for array in &board {
+        for item in array {
+            if item == "null" {
+                let mut board1 = board.clone();
+                board1[counter1][counter2] = player_icon.clone();
+                std::thread::sleep(std::time::Duration::from_secs(5));
+                return board1;
+            }
+            counter1 += 1;
+        }
+        counter2 += 1;
+    }
+    return board;
 }
 #[allow(dead_code)]
 fn random_cpu(board: Vec<Vec<String>>) -> Vec<Vec<String>> {
