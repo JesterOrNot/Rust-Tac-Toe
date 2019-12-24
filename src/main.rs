@@ -106,7 +106,29 @@ fn get_player_types() -> Vec<String> {
     }
 }
 fn is_game_over(board: Vec<Vec<String>>) -> i32 {
-    return 2;
+    if (board[0][0] == "X" && board[0][1] == "X" && board[0][2] == "X")
+        || (board[0][0] == "X" && board[1][0] == "X" && board[2][0] == "X")
+        || (board[1][0] == "X" && board[1][1] == "X" && board[1][2] == "X")
+        || (board[2][0] == "X" && board[2][1] == "X" && board[2][2] == "X")
+        || (board[0][1] == "X" && board[1][1] == "X" && board[2][1] == "X")
+        || (board[0][2] == "X" && board[1][2] == "X" && board[2][2] == "X")
+        || (board[0][0] == "X" && board[1][1] == "X" && board[2][2] == "X")
+        || (board[0][2] == "X" && board[1][1] == "X" && board[2][0] == "X")
+    {
+        return 0;
+    } else if (board[0][0] == "0" && board[0][1] == "0" && board[0][2] == "0")
+        || (board[0][0] == "0" && board[1][0] == "0" && board[2][0] == "0")
+        || (board[1][0] == "0" && board[1][1] == "0" && board[1][2] == "0")
+        || (board[2][0] == "0" && board[2][1] == "0" && board[2][2] == "0")
+        || (board[0][1] == "0" && board[1][1] == "0" && board[2][1] == "0")
+        || (board[0][2] == "0" && board[1][2] == "0" && board[2][2] == "0")
+        || (board[0][0] == "0" && board[1][1] == "0" && board[2][2] == "0")
+        || (board[0][2] == "0" && board[1][1] == "0" && board[2][0] == "0")
+    {
+        return 1;
+    } else {
+        return 2;
+    }
 }
 fn random_cpu(board: Vec<Vec<String>>, player_icon: String) -> Vec<Vec<String>> {
     let mut counter3 = 0;
