@@ -10,7 +10,14 @@ fn main() {
         board = make_move(board.clone(), String::from("X"));
     }
 }
-
+fn again_or_no() {
+    let choice = prompt_input("Do you want to play again(y/n)?: ");
+    if choice == "y" {
+        main();
+    } else {
+        println!("Ok, Bye!");
+    }
+}
 fn print_board(board: Vec<Vec<String>>) {
     println!("---------");
     let mut m = 0;
