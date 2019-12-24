@@ -49,12 +49,15 @@ fn main() {
     again_or_no();
 }
 fn again_or_no() {
-    let choice = prompt_input("Do you want to play again(y/n)?: ");
-    if choice == "y" {
+    let mut dial = dialoguer::Select::new();
+    dial.with_prompt("Do you want to play again?");
+    dial.items(&["Yes".green(), "No".red()]);
+    let result = dial.interact().unwrap();
+    if result == 0 {
         main();
-    } else {
-        println!("Ok, Bye!");
+        return;
     }
+    println!("Ok, bye!");
 }
 fn print_board(board: Vec<Vec<String>>) {
     println!("---------");
@@ -138,8 +141,22 @@ fn main_menu() -> Vec<String> {
 }
 fn get_player_types() -> Vec<String> {
     println!("Welcome to Tic-Tac-Toe!");
-    let choice1 = prompt_input("Is player one a cpu or a normal player(cpu/play)?: ");
-    let choice2 = prompt_input("Is player two a cpu or a normal player(cpu/play)?: ");
+    let mut dial = dialoguer::Select::new();
+    dial.with_prompt("Is player one a cpu or a normal player?");
+    dial.items(&["CPU".green(), "Player".red()]);
+    let choice1 = if dial.interact().unwrap() == 0 {
+        String::from("cpu")
+    } else {
+        String::from("play")
+    };
+    let mut dial1 = dialoguer::Select::new();
+    dial1.with_prompt("Is player two a cpu or a normal player?");
+    dial1.items(&["CPU".green(), "Player".red()]);
+    let choice2 = if dial.interact().unwrap() == 0 {
+        String::from("cpu")
+    } else {
+        String::from("play")
+    };
     if (choice1 == "play" || choice1 == "cpu") && (choice2 == "play" || choice2 == "cpu") {
         let output = vec![choice1, choice2];
         return output;
