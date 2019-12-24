@@ -26,18 +26,19 @@ fn print_board(board: Vec<Vec<String>>) {
     }
     println!("---------");
 }
+
 fn get_moves() -> (i32, i32) {
-    print!("What is the first item?: ");
+    let item1 = integer_input("What is the first item?: ");
+    let item2: i32 = integer_input("What is the second item?: ");
+    return (item1, item2);
+}
+
+fn integer_input(prompt: &str) -> i32 {
+    print!("{}", prompt);
     std::io::stdout().flush().unwrap();
     let mut line = String::new();
     std::io::stdin().read_line(&mut line).unwrap();
-    let item1: i32 = line.trim().parse().unwrap();
-    print!("What is the second item?: ");
-    std::io::stdout().flush().unwrap();
-    let mut line1 = String::new();
-    std::io::stdin().read_line(&mut line1).unwrap();
-    let item2: i32 = line1.trim().parse().unwrap();
-    return (item1, item2);
+    return line.trim().parse().unwrap();
 }
 fn new_board() -> Vec<Vec<String>> {
     return vec![
