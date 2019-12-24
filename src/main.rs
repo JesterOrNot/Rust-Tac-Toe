@@ -3,9 +3,10 @@ use rand::Rng;
 use std::io::Write;
 
 fn main() {
+    let mut board = new_board();
     loop {
-        print_board(new_board());
-        get_moves();
+        print_board(board.clone());
+        board = make_move(board.clone(), String::from("X"));
     }
 }
 
@@ -142,6 +143,17 @@ fn is_draw(board: Vec<Vec<String>>) -> bool {
     return false;
 }
 #[allow(dead_code)]
-fn make_move(board: Vec<Vec<String>>, player_icon: &str) -> Vec<Vec<String>> {
-    return vec![];
+fn make_move(mut board: Vec<Vec<String>>, player_icon: String) -> Vec<Vec<String>> {
+    let moves = get_moves();
+    let x = moves.0;
+    let y = moves.1;
+    if &board[x as usize][y as usize] == "null" {
+        let mut board1 = board.clone();
+        board1[x as usize][y as usize] = player_icon.clone();
+        return board1;
+    } else {
+        println!("{}", "Spot taken!".red());
+        board = make_move(board, player_icon);
+    }
+    return board;
 }
