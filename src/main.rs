@@ -59,6 +59,8 @@ fn new_board() -> Vec<Vec<String>> {
     ];
 }
 fn main() {
-    print_board(new_board());
-    get_moves();
+    loop {
+        print_board(new_board());
+        get_moves();
+    }
 }
