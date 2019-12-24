@@ -60,10 +60,16 @@ fn again_or_no() {
     println!("Ok, bye!");
 }
 fn print_board(board: Vec<Vec<String>>) {
-    println!("---------");
+    println!("   1  2  3");
+    println!("  ---------");
     let mut m = 0;
+    let mut count = 1;
     for array in board {
         for item in array {
+            if m == 0 {
+                print!("{} ", count);
+                count+=1;
+            }
             print!("|");
             if item == "null" {
                 print!("{}", "-".cyan())
@@ -76,13 +82,14 @@ fn print_board(board: Vec<Vec<String>>) {
             }
             print!("|");
             if m == 2 {
-                println!("");
+                println!(" {}", count-1);
                 m = -1
             }
             m += 1;
         }
     }
-    println!("---------");
+    println!("  ---------");
+    println!("   1  2  3");
 }
 
 fn get_moves() -> (i32, i32) {
