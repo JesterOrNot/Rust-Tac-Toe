@@ -90,13 +90,6 @@ fn get_moves() -> (i32, i32) {
     let item2: i32 = integer_input("What is the second item?: ");
     return (item1 - 1, item2 - 1);
 }
-fn prompt_input(msg: &str) -> String {
-    print!("{}", msg);
-    std::io::stdout().flush().unwrap();
-    let mut line = String::new();
-    std::io::stdin().read_line(&mut line).unwrap();
-    return String::from(line.trim().trim());
-}
 fn integer_input(prompt: &str) -> i32 {
     print!("{}", prompt);
     std::io::stdout().flush().unwrap();
@@ -130,11 +123,25 @@ fn main_menu() -> Vec<String> {
     levels.push("null".to_string());
     levels.push("null".to_string());
     if player_types[0] == "cpu" {
-        let level1 = prompt_input("What level is the player1 cpu(0/1)?: ");
+        let mut dial = dialoguer::Select::new();
+        dial.with_prompt("What level is the player1 cpu(0/1)?");
+        dial.items(&["0".cyan(), "1".cyan()]);
+        let level1 = if dial.interact().unwrap() == 0 {
+            String::from("0")
+        } else {
+            String::from("1")
+        };
         levels[2] = String::from(level1);
     }
     if player_types[1] == "cpu" {
-        let level2 = prompt_input("What level is the player2 cpu(0/1)?: ");
+        let mut dial = dialoguer::Select::new();
+        dial.with_prompt("What level is the player2 cpu(0/1)?");
+        dial.items(&["0".cyan(), "1".cyan()]);
+        let level2 = if dial.interact().unwrap() == 0 {
+            String::from("0")
+        } else {
+            String::from("1")
+        };
         levels[3] = String::from(level2);
     }
     return levels.clone();
