@@ -28,7 +28,7 @@ fn print_board(board: Vec<Vec<String>>) {
 }
 
 fn get_moves() -> (i32, i32) {
-    let item1 = integer_input("What is the first item?: ");
+    let item1: i32 = integer_input("What is the first item?: ");
     let item2: i32 = integer_input("What is the second item?: ");
     return (item1, item2);
 }
