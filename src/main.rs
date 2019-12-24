@@ -65,7 +65,7 @@ fn again_or_no(terminal: console::Term) {
 }
 fn print_board(board: Vec<Vec<String>>) {
     println!("   1  2  3");
-    println!("  ---------");
+    println!("  ━━━━━━━━");
     let mut m = 0;
     let mut count = 1;
     for array in board {
@@ -92,7 +92,7 @@ fn print_board(board: Vec<Vec<String>>) {
             m += 1;
         }
     }
-    println!("  ---------");
+    println!("  ━━━━━━━━");
     println!("   1  2  3");
 }
 
